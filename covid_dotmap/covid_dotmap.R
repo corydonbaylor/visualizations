@@ -19,7 +19,7 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # cleaning up data
 dmv = read.csv("covid_confirmed_usafacts.csv", stringsAsFactors = F)%>%
   filter(State %in% c("VA", "DC", "MD"))%>%
-  select(-c(ï..countyFIPS, stateFIPS))
+  select(-c(countyFIPS, stateFIPS))
   
 # creating a time series 
 dmv_ts = dmv%>%
