@@ -3,6 +3,7 @@ library(tidyverse)
 library(patchwork)
 library(ggthemes)
 
+setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 
 orestia = gutenberg_download("8604")
 
@@ -68,7 +69,10 @@ aes_plot = aes%>%
     legend.position = "none",
     axis.ticks.x = element_blank(),
     axis.line.x = element_blank(),
-    axis.text.x = element_blank()
+    panel.grid.major.y = element_line(size = .2),
+    axis.text.x = element_blank(),
+    strip.text = element_text(size = 8),
+    axis.text.y = element_blank()
   )+
   scale_fill_manual(values = c("darkred", "darkgreen"))+
   labs(x = "",
@@ -145,12 +149,21 @@ oedipus_plot = oedipus%>%
     legend.position = "none",
     axis.ticks.x = element_blank(),
     axis.line.x = element_blank(),
-    axis.text.x = element_blank()
+    panel.grid.major.y = element_line(size = .2),
+    axis.text.x = element_blank(),
+    strip.text = element_text(size = 8),
+    axis.text.y = element_blank()
   )+
   scale_fill_manual(values = c("darkred", "darkgreen"))+
   labs(x = "",
-       y = "Sentiment Score")
+       y = "")
 
+oedipus_plot
+
+ggsave("oedipus_plot.png",
+       width= 125,
+       height = 40,
+       units = "mm")
 
 
 frogs = gutenberg_download("7998")
@@ -214,8 +227,9 @@ comedies_plot = comedies%>%
     legend.position = "none",
     axis.ticks.x = element_blank(),
     axis.line.x = element_blank(),
+    panel.grid.major.y = element_line(size = .2),
     axis.text.x = element_blank(),
-    strip.text = element_text(size = 10),
+    strip.text = element_text(size = 8),
     axis.text.y = element_blank()
   )+
   scale_fill_manual(values = c("darkred", "darkgreen"))+
@@ -225,4 +239,7 @@ comedies_plot = comedies%>%
 
 comedies_plot
 
-ggsave("comedies_plot.png")
+ggsave("comedies_plot.png",
+       width= 125,
+       height = 40,
+       units = "mm")
